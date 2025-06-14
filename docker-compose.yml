@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram_monitor
+    volumes:
+      - ./config/seen_users.json:/app/config/seen_users.json
+      - ./config/accounts.json:/app/config/accounts.json
+      - ./config/phrases.json:/app/config/phrases.json
+      - ./config/stop_words.json:/app/config/stop_words.json
+      - ./config/watchlist.json:/app/config/watchlist.json
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
